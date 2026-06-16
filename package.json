@@ -1,0 +1,22 @@
+{
+  "name": "playwrright",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "e2e",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Beginner Playwright setup",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}
