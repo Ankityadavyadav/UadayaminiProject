@@ -1,11 +1,18 @@
 import { test,expect} from '../fixtures';
+import { users,products } from '../data/testdata';
 
 //----------------------
 // LOGIN TESTS
 //----------------------
 
+test.beforeEach(async ({ loginPage }) => {
+    await loginPage.login(users.standard_user.username, users.standard_user.password  );
+});// run before each test in this file, 
+// and it will log in with the provided credentials before each test runs.
+
+
+
 test('TC01 - Validate login goes to products page', async ({ loginPage, page }) => {
-    await loginPage.login('standard_user', 'secret_sauce');
     await expect(page).toHaveURL('/inventory.html');
     await expect(page.locator('.title')).toHaveText('Products');
 
@@ -31,8 +38,6 @@ test('TC03 - empty fields show error', async ({ loginPage }) => {
 
 test('TC04 - products page shows 6 items', async ({ loginPage, productsPage }) => {
  
-  await loginPage.login('standard_user', 'secret_sauce');
- 
   expect(await productsPage.getHeadline()).toBe('Products');
   expect(await productsPage.getProductCount()).toBe(6);
  
@@ -40,8 +45,7 @@ test('TC04 - products page shows 6 items', async ({ loginPage, productsPage }) =
 
 test('TC05 - add one product to cart', async ({ loginPage, productsPage }) => {
  
-  await loginPage.login('standard_user', 'secret_sauce');
-  await productsPage.addToCart('Sauce Labs Backpack');
+  await productsPage.addToCart(products.backpack);
  
   expect(await productsPage.getCartBadgeCount()).toBe('1');
  
@@ -49,11 +53,12 @@ test('TC05 - add one product to cart', async ({ loginPage, productsPage }) => {
  
 test('TC06 - add two products cart badge shows 2', async ({ loginPage, productsPage }) => {
  
-  await loginPage.login('standard_user', 'secret_sauce');
-  await productsPage.addToCart('Sauce Labs Backpack');
-  await productsPage.addToCart('Sauce Labs Bike Light');
+  await productsPage.addToCart(products.backpack);
+  await productsPage.addToCart(products.bikeLight);
  
   expect(await productsPage.getCartBadgeCount()).toBe('2');
  
 });
+
+
 
