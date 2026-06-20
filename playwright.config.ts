@@ -1,21 +1,22 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+import { defineBddConfig } from 'playwright-bdd';
+
+const testDir = defineBddConfig({
+  features: 'tests/features/**/*.feature',
+  steps: [
+    'step-definitions/**/*.ts',
+    'fixtures/index.ts'
+  ]
+});
 
 export default defineConfig({
-  testDir: './tests',
-  fullyParallel: true,
-  timeout: 30 *1000,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  testDir,
+
+  timeout: 30000,
+
   use: {
-    baseURL: 'https://www.saucedemo.com',
-    trace: 'on-first-retry'
+    headless: false,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
-    }
-  ]
 });

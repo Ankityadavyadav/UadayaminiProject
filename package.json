@@ -18,5 +18,8 @@
   "description": "Beginner Playwright setup",
   "devDependencies": {
     "@playwright/test": "^1.58.2"
+  },
+  "dependencies": {
+    "playwright-bdd": "^9.2.0"
   }
 }
