@@ -33,12 +33,8 @@ test('POST create a new post',async ({request}) => {
     expect(created.title).toBe("my first post");
     expect(created.body).toBe("this is the body of my first post");
     expect(created.userId).toBe(1);
-});
 
-// id 101
-
-
-// put 
+    // put 
 await request.put('https://jsonplaceholder.typicode.com/posts/1', {
   data: { id: 1, title: 'Replaced', body: 'All new', userId: 1 },
 });
@@ -51,4 +47,10 @@ await request.patch('https://jsonplaceholder.typicode.com/posts/1', {
 // delete 
 await request.delete('https://jsonplaceholder.typicode.com/posts/1');
 expect(response.status()).toBe(200);
+});
+
+// id 101
+
+
+
 
