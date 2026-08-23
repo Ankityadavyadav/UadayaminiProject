@@ -8,7 +8,7 @@ Feature: Login Functionality
     Then I should be redirected to the dashboard
     # Expected outcome: The user is redirected to the dashboard
 
-   Scenario Outline: Invalid user cannot login
+  Scenario Outline: Invalid user cannot login
     Given I am on the login page
     #pre-condition: The user is on the login page
     When I login with username "<username>" and password "<password>"
@@ -19,7 +19,15 @@ Feature: Login Functionality
     Examples:
       | username       | password       | error_message                       |
       | invalid_user   | secret_sauce   | "Username and password do not match"|
-      | standard_user  | wrong_password | "Username and password do not match"| 
-          
+      | standard_user  | wrong_password | "Username and password do not match"|
+
+
+  Scenario: End to End test Case for Add product to cart and checkout 
+   Given User loged in with Subsequent login with PIN flow
+   When User adds product to cart 
+   Then I clock on the cart icon
+   And User proceeds to checkout 
+
+  
 
 

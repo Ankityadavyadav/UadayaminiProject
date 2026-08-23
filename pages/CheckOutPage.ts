@@ -11,7 +11,7 @@ export class CheckOutPage extends BasePage {
     await this.page.goto('https://www.saucedemo.com/cart.html');
   }
 
-  async getItemCount() {
+  async getItemCount() {  
     return this.page.locator('.cart_item').count();
   }
 

@@ -17,6 +17,15 @@ export class LoginPage extends BasePage {
     await this.page.getByPlaceholder('Username').fill(username);
     await this.page.getByPlaceholder('Password').fill(password);
     await this.page.getByRole('button', { name: 'Login' }).click();
+    await this.page.locator('#login-button').click();
+    await this.page.locator('.btn-action').click();
+    await this.page.locator('//input[@type="submit"]').click();
+
+
+    await this.page.getByRole('button', { name: 'Login' }).click(); 
+    await this.page.getByPlaceholder('Username').fill('user');    
+    await this.page.getByLabel('Password').fill('pass');
+
   }
 
   async getErrorMessage() {
@@ -32,3 +41,5 @@ export class LoginPage extends BasePage {
     
   }
 }
+
+
